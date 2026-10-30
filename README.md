@@ -25,7 +25,7 @@ Python examples and API reference for the **[Temu Trending Products & Lightning 
 | | |
 | :--- | :--- |
 | **Pricing** | $3.00 per 1,000 products + $0.00005 start fee; filters are applied before saving, so you pay only for kept products |
-| **Run time (measured)** | ~7–25 s per run, ~200–250 unique products with all four feeds |
+| **Run time (measured)** | ~5–10 s per run (plain HTTP, no browser), ~350 unique products with all four feeds |
 | **Sales data** | `soldCount` parsed from Temu badges (`13K+ sold` → 13000); `estimatedRevenue` = price × units sold (lower bound) |
 | **Unknown values** | `null` — nothing is guessed or filled with placeholders |
 | **Login / cookies** | Not required |
@@ -73,7 +73,7 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
 | `minRating` | `number` | `0` | Minimum star rating |
 | `onSaleOnly` | `boolean` | `false` | Only products priced below market price |
 | `excludeAds` | `boolean` | `false` | Skip sponsored products |
-| `proxyConfiguration` | `object` | off | Direct connection first; if Temu redirects the guest session to a login wall, the actor retries once through Apify Proxy (US) |
+| `proxyConfiguration` | `object` | off | Not needed: direct first; a source Temu blocks is retried automatically on fresh US Apify Proxy IPs (up to 4 per source) |
 
 ---
 
